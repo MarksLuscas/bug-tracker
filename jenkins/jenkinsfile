@@ -55,6 +55,8 @@ pipeline {
                     sh '''
                     npm ci
                     npm test             
+                    mkdir -p reports
+                    mv coverage reports/
                     '''
                 }
             }
@@ -62,6 +64,11 @@ pipeline {
                 always {
                 //funciona apos os testes e passando o Always, funciona mesmo que os testes falhem
                     junit 'bugtracker-frontend/test-results.xml'
+                    publishHTML target:[
+                        reportDir: 'bugtracker-frontend/reports/coverage',
+                        reportFiles: 'index.html',
+                        reportName: 'Frontend - Coverage'
+                    ]
                 }
             }
         }
