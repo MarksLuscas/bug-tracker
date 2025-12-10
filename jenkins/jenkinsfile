@@ -41,6 +41,12 @@ pipeline {
                     '''
                 }
             }
+            post {
+                always {
+                //funciona apos os testes e passando o Always, funciona mesmo que os testes falhem
+                    junit 'bugtracker-frontend/test-results.xml'
+                }
+            }
         }
     }
 }
