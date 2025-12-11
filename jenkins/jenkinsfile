@@ -101,7 +101,6 @@ pipeline {
             steps{
                 dir('tests-api'){
                     sh 'npx wait-port http://localhost:8080/api/health -t 30000'
-
                     sh 'npm ci'
                     sh 'npx playwright test'
                 }
@@ -110,14 +109,13 @@ pipeline {
                 always{
                     junit 'tests-api/test-results/results.xml'
                     publishHTML target:[
-                        reportDir: 'tests-api/playweight-report',
+                        reportDir: 'tests-api/playwright-report',
                         reportFiles: 'index.html',
                         reportName: 'Playwright API Test Report'
                     ]
                 }
             }
         }
-
         stage('E2E Tests'){
             agent{
                 docker{
@@ -126,7 +124,6 @@ pipeline {
                     args '-u 0 --network=host'                    
                 }
             }
-
             steps{
                 dir('tests-e2e'){
                     sh 'npm ci'
