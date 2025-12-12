@@ -39,7 +39,7 @@ jobs:
             cache-dependency-path: bugtracker-frontend/package-lock.json
 
       - name: Execute Frontend Unit Tests
-        working-directory: .bugtracker-frontend
+        working-directory: ./bugtracker-frontend
         run: |
           npm ci
           npm test
