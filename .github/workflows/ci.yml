@@ -147,7 +147,6 @@ jobs:
             npx playwright install
             npx playwright test
 
-
       - name: Shut Down Application
         run: docker compose down
 
@@ -173,4 +172,4 @@ jobs:
         with:
             name: API Tests Report
             path: ./tests-api/test-results/*.xml
-            report: jest-junit
+            reporter: jest-junit
